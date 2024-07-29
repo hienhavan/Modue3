@@ -1,4 +1,4 @@
-package controller.bai10;
+package module3.bai10;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

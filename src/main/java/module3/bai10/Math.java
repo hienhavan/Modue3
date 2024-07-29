@@ -1,5 +1,5 @@
 
-package controller.bai10;
+package module3.bai10;
 
 import java.io.Serializable;
 

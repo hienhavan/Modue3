@@ -58,7 +58,7 @@
     </form>
     <hr/>
     <h2>
-        <jsp:useBean id="c" class="controller.bai10.Math"/>
+        <jsp:useBean id="c" class="module3.bai10.Math"/>
         <jsp:setProperty name="c" property="*"/>
         <jsp:getProperty name="c" property="result"/>
     </h2>

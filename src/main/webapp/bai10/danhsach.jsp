@@ -1,9 +1,9 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="controller.bai10.ThongTinKhachHang" %>
+<%@ page import="module3.bai10.PassengerInformation" %>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--<%@page import="controller.bai10.ThongTinKhachHang"%>--%>
+<%--<%@page import="module3.bai10.PassengerInformation"%>--%>
 
 <html>
 <head>

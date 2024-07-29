@@ -1,12 +1,12 @@
-package controller.bai10;
+package module3.bai10;
 
-public class ThongTinKhachHang {
+public class PassengerInformation {
     String name;
     String date;
     String address;
     String image;
-    public ThongTinKhachHang(){};
-    public ThongTinKhachHang(String name, String date, String address, String image) {
+    public PassengerInformation(){};
+    public PassengerInformation(String name, String date, String address, String image) {
         this.name = name;
         this.date = date;
         this.address = address;

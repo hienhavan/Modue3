@@ -1,4 +1,4 @@
-package controller.bai9;
+package module3.bai9;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(name = "tinhchietkhau",urlPatterns = {"/bai9/tinhtoan"})
-public class TinhChetKhau extends HttpServlet {
+public class DiscountCalculation extends HttpServlet {
     public void  doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
         String listPrice = request.getParameter("Price");
         String discountPercent = request.getParameter("Discount");

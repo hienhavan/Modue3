@@ -1,4 +1,4 @@
-package controller.bai11.model;
+package module3.bai11.model;
 
 public class User {
     int id;
