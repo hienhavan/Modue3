@@ -18,7 +18,7 @@
         <th class="text-success text-center initialism">tên</th>
         <th class="text-success text-center initialism">ngày sinh</th>
         <th class="text-success text-center initialism">địa chỉ</th>
-        <th class="text-success text-center initialism">ảnh</th>
+        <th class="text-success text-center initialism">ảnh</th> ${list}
     </tr>
     <c:forEach var="customer" items="${list}">
         <tr>
