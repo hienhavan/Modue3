@@ -6,10 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>LOGIN</title>
     <%--    <link rel="stylesheet" href="login.css">--%>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         *,
         *::before,
@@ -21,6 +23,13 @@
             margin: 0;
             font-family: Roboto, -apple-system, 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
             background: #3b4465;
+        }
+
+        .a {
+            font-size: 14px;
+            color: #ff5050 !important;
+            size: 10px;
+            margin: 10px;
         }
 
         .forms-section {
@@ -300,26 +309,37 @@
 </head>
 <body>
 <section class="forms-section">
-    <h1 class="section-title">Animated Forms</h1>
+    <h1 class="section-title">LOGIN USER</h1>
     <div class="forms">
         <div class="form-wrapper is-active">
             <button type="button" class="switcher switcher-login">
                 Login
                 <span class="underline"></span>
             </button>
-            <form class="form form-login">
+            <form class="form form-login" action="<%=request.getContextPath() %>/loginUsers" method="post">
                 <fieldset>
                     <legend>Please, enter your email and password for login.</legend>
                     <div class="input-block">
                         <label for="login-email">E-mail</label>
-                        <input id="login-email" type="email" required>
+                        <input id="login-email" type="email" name="email" required>
                     </div>
                     <div class="input-block">
                         <label for="login-password">Password</label>
-                        <input id="login-password" type="password" required>
+                        <input id="login-password" type="password" name="password" required>
                     </div>
+                    <c:if test="${errorLogin == false}">
+                        <div style="display: flex;align-items: center;" >
+                            <i class="bi bi-shield-fill-exclamation"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" color="goldenrod" fill="currentColor"
+                                 class="bi bi-shield-fill-exclamation" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                      d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.8 11.8 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7 7 0 0 0 1.048-.625 11.8 11.8 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.54 1.54 0 0 0-1.044-1.263 63 63 0 0 0-2.887-.87C9.843.266 8.69 0 8 0m-.55 8.502L7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0M8.002 12a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+                            </svg>
+                            <strong class="a">tài khoản mật khẩu không đúng</strong>
+                        </div>
+                    </c:if>
                 </fieldset>
-                <button type="submit" class="btn-login">Login</button>
+                <input type="submit" class="btn-login" value="Login">
             </form>
         </div>
         <div class="form-wrapper">
@@ -342,8 +362,13 @@
                     </div>
                     <div class="input-block">
                         <label for="signup-password-confirm">Confirm password</label>
-                        <input id="signup-password-confirm" type="password" required>
+                        <input id="signup-password-confirm" type="password" name="password-confirm" required>
                     </div>
+                    <c:if test="${errorPassword == false}">
+                        <script>
+                            alert("đăng ký không thành công(mật khẩu không khớp nhau)")
+                        </script>
+                    </c:if>
                 </fieldset>
                 <input type="submit" class="btn-signup" value="Continue">
             </form>

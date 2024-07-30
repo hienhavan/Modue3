@@ -12,6 +12,7 @@
 <body>
 <script>
     function dodelete(id) {
+        event.preventDefault();
         var r = confirm("Bạn có chắc muốn xóa?");
         if (r == true) {
             fetch("users?id=" + encodeURIComponent(id), {
@@ -20,6 +21,7 @@
                 .then(response => response.text())
                 .then(result => {
                     alert("Xóa thành công!");
+                    window.location.reload();
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -29,6 +31,7 @@
     }
 
     function updata(id) {
+        event.preventDefault();
         var name = prompt("nhập tên");
         var age = prompt("nhập tuổi");
         fetch("users?id=" + encodeURIComponent(id) + "&name=" + encodeURIComponent(name) + "&age=" + encodeURIComponent(age), {
@@ -36,6 +39,7 @@
         }).then(response => response.text())
             .then(result => {
                 alert("sửa thành công!");
+                window.location.reload();
             })
 
     }
@@ -56,9 +60,9 @@
             <td class="text-center initialism"><c:out value="${user.name}"/></td>
             <td class="text-center initialism"><c:out value="${user.age}"/></td>
             <td class="text-center initialism" style="width: 15%">
-                <button class="btn btn-secondary m-3"><a class="text-white " href="#" onclick="updata(${id})">Updata</a>
+                <button class="btn btn-secondary m-3"><a class="text-white " onclick="updata(${id})">Updata</a>
                 </button>
-                <button class="btn btn-secondary m-3"><a class="text-white " href="#"
+                <button class="btn btn-secondary m-3"><a class="text-white "
                                                          onclick="dodelete(${id})">Delete</a>
                 </button>
             </td>

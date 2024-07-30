@@ -44,4 +44,22 @@ public class UserDao {
         }
         return users;
     }
+
+    public static boolean checkAccount(String selectQuery, String emailInPut, String passwordInPut) throws ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement statement = conn.prepareStatement(selectQuery);
+             ResultSet rs = statement.executeQuery()) {
+            while (rs.next()) {
+                String emailUotPut = rs.getString("email");
+                String passwordUotPut = rs.getString("password");
+                if (emailUotPut.equals(emailInPut) && passwordUotPut.equals(passwordInPut)) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
 }

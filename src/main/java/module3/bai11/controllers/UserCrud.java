@@ -3,6 +3,7 @@ package module3.bai11.controllers;
 import module3.bai11.model.User;
 import module3.bai11.model.UserDao;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +24,8 @@ public class UserCrud extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<User> users = UserDao.select(SELECT_QUERY);
         req.setAttribute("data", users);
-        req.getRequestDispatcher("bai11/view.jsp").forward(req, resp);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("bai11/view.jsp");
+        dispatcher.forward(req, resp);
     }
 
     @Override
@@ -41,7 +43,11 @@ public class UserCrud extends HttpServlet {
             }
         }
 
-        UserDao.insert(INSERT_QUERY, id, name, age);
+        try {
+            UserDao.insert(INSERT_QUERY, id, name, age);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         req.getRequestDispatcher("bai11/success.jsp").forward(req, resp);
     }
 
@@ -57,7 +63,11 @@ public class UserCrud extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("id"));
         String name = req.getParameter("name");
         int age = Integer.parseInt(req.getParameter("age"));
-        UserDao.update(UPDATE_QUERY, name, age, id);
+        try {
+            UserDao.update(UPDATE_QUERY, name, age, id);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         resp.sendRedirect("users");
     }
 }

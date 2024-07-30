@@ -22,33 +22,39 @@ public class UserDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
         return users;
     }
 
-    public static void insert(String insertQuery, int id, String name, int age) {
+    public static void insert(String insertQuery, int id, String name, int age) throws ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(insertQuery)) {
-
             statement.setInt(1, id);
             statement.setString(2, name);
             statement.setInt(3, age);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    public static void update(String updateQuery, String name, int age, int id) {
+    public static void update(String updateQuery, String name, int age, int id) throws ClassNotFoundException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(updateQuery)) {
-
             statement.setString(1, name);
             statement.setInt(2, age);
             statement.setInt(3, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -60,6 +66,8 @@ public class UserDao {
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 }
