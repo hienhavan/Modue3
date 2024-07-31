@@ -1,4 +1,4 @@
-package module3.login.controller;
+package module3.login.controller.controller_login;
 
 import module3.login.model.UserDao;
 
@@ -12,26 +12,25 @@ import java.io.IOException;
 
 @WebServlet(name = "login", urlPatterns = "/loginUsers")
 public class Login extends HttpServlet {
-    private static final String CHECK_ACCOUNT = "SELECT email,password FROM users";
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        boolean checkAccout = false;
+        //Check Account Password
+        boolean checkAccout;
         try {
-            checkAccout = UserDao.checkAccount(CHECK_ACCOUNT, email, password);
+            checkAccout = UserDao.checkAccount(email, password);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        //if true
         if (checkAccout) {
-            req.getRequestDispatcher("bai11/view.jsp").forward(req, resp);
+            resp.sendRedirect("/products");
             return;
         }
+        //if false
         req.setAttribute("errorLogin", checkAccout);
-        req.getRequestDispatcher("login/login.jsp").forward(req, resp);
-//        HttpSession session = req.getSession();
-//        session.setAttribute("errorLogin", checkAccout);
-//        resp.sendRedirect("/login");
+        req.getRequestDispatcher("view/login/login.jsp").forward(req, resp);
+
     }
 }

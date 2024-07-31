@@ -364,9 +364,14 @@
                         <label for="signup-password-confirm">Confirm password</label>
                         <input id="signup-password-confirm" type="password" name="password-confirm" required>
                     </div>
+                    <c:if test="${errorEmail == false}">
+                        <script>
+                            alert("đăng ký không thành công (tài khoản đã tồn tại)")
+                        </script>
+                    </c:if>
                     <c:if test="${errorPassword == false}">
                         <script>
-                            alert("đăng ký không thành công(mật khẩu không khớp nhau)")
+                            alert("đăng ký không thành công (mật khẩu không khớp nhau)")
                         </script>
                     </c:if>
                 </fieldset>

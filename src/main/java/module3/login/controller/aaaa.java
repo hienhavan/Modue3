@@ -16,7 +16,7 @@ public class aaaa {
     public static void main(String[] args) throws ClassNotFoundException {
         String gmail = "havanhien54321@gmail.com";
         String password = "1";
-        boolean check = UserDao.checkAccount(CHECK_ACCOUNT, gmail,password);
+        boolean check = UserDao.checkAccount(gmail,password);
         System.out.println(check);
     }
 }
