@@ -11,7 +11,7 @@ import java.util.List;
 
 public class UserDao {
     public static void signUpUser(String gmail, String password) {
-        final String INSERT_QUERY = "INSERT INTO users ( email, password) VALUES ( ?, ?)";
+        final String INSERT_QUERY = System.getenv("INSERT_QUERY_PASSWORD");
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -30,10 +30,10 @@ public class UserDao {
     }
 
     public static boolean checkAccountsignUpUser(String emailInPut) throws ClassNotFoundException {
-        final String CHECK_ACCOUNT = "SELECT email FROM users";
+        final String CHECK_ACCOUNT_SIGN_UP_USER = System.getenv("CHECK_ACCOUNT_SIGN_UP_USER");
         Class.forName("com.mysql.cj.jdbc.Driver");
         try (Connection conn = DBConnection.getConnection();
-             PreparedStatement statement = conn.prepareStatement(CHECK_ACCOUNT);
+             PreparedStatement statement = conn.prepareStatement(CHECK_ACCOUNT_SIGN_UP_USER);
              ResultSet rs = statement.executeQuery()) {
             while (rs.next()) {
                 String emailUotPut = rs.getString("email");
@@ -49,7 +49,7 @@ public class UserDao {
 
 
     public static boolean checkAccount(String emailInPut, String passwordInPut) throws ClassNotFoundException {
-        final String CHECK_ACCOUNT = "SELECT email,password FROM users";
+        final String CHECK_ACCOUNT = System.getenv("CHECK_ACCOUNT");
         Class.forName("com.mysql.cj.jdbc.Driver");
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement statement = conn.prepareStatement(CHECK_ACCOUNT);
@@ -65,6 +65,47 @@ public class UserDao {
             throw new RuntimeException(e);
         }
         return false;
+    }
+
+    public static void addUserInfomation(String name, int age, int phoneNumber, String address, String email) {
+        final String UPDATE_USER_INFORMATION = System.getenv("UPDATE_USER_INFORMATION");
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(UPDATE_USER_INFORMATION)) {
+            stmt.setString(1, name);
+            stmt.setInt(2, age);
+            stmt.setInt(3, phoneNumber);
+            stmt.setString(4, address);
+            stmt.setString(5, email);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error executing", e);
+        }
+    }
+
+    public static boolean checkUserInfomation(String email) {
+        boolean checkInfomation = true;
+        final String CHECK_INFORMATION = System.getenv("CHECK_USER_INFORMATION");
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(CHECK_INFORMATION);) {
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String tuoi = resultSet.getString("tuoi");
+                if (tuoi == null) {
+                    checkInfomation = false;
+                    return checkInfomation;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error executing ", e);
+        }
+        return checkInfomation;
     }
 
 

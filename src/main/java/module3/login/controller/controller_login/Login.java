@@ -24,7 +24,14 @@ public class Login extends HttpServlet {
             throw new RuntimeException(e);
         }
         //if true
-        if (checkAccout) {
+        boolean checkInformation = UserDao.checkUserInfomation(email);
+        if (checkAccout && !checkInformation) {
+            HttpSession session = req.getSession();
+            session.setAttribute("userEmail", email);
+            resp.sendRedirect("/userInformation");
+            return;
+        }
+        if (checkAccout){
             resp.sendRedirect("/products");
             return;
         }
@@ -33,4 +40,5 @@ public class Login extends HttpServlet {
         req.getRequestDispatcher("view/login/login.jsp").forward(req, resp);
 
     }
+
 }
