@@ -23,7 +23,7 @@
                 </li>
                 <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Contact.html">Trang cá nhân</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="<%=request.getContextPath()%>/controllerAddEWallets">Danh mục</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="<%=request.getContextPath()%>/controllerHomeListWallet">Danh mục</a>
                 </li>
                 <li class="u-nav-item"><a class="u-button-style u-nav-link" href="<%=request.getContextPath()%>/logout">Đăng xuất</a>
                 </li>

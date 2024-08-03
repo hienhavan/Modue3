@@ -20,7 +20,7 @@ html {
     box-sizing: border-box;
     font-size: 62.5%; /* 1rem = 10px, 100% = 16px */
     overflow-y: scroll;
-    background: var(--greyLight-1);
+    /*background: var(--greyLight-1);*/
     font-family: 'Nunito', sans-serif;
     letter-spacing: .03rem;
 }

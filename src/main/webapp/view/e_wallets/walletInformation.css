@@ -233,25 +233,6 @@ h2 {
 .name {
     font-size: 20px;
 }
-
-a {
-    top: 15px;
-    width: 140px;
-    display: flex;
-    padding: 6px 15px;
-    text-decoration: none;
-    background: #5cb85c;
-    color: #FFF;
-    font-weight: 500;
-    border-radius: 12px;
-    box-shadow: 0px 0px 20px -8px cadetblue;
-    font-size: 15px;
-    margin-top: 10px;
-}
-
-a:hover {
-    background: #0d7811;
-}
 .form__edit {
     display: flex;
     flex-direction: column;
@@ -267,7 +248,24 @@ a:hover {
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
+.edit--delete {
+    top: 15px;
+    width: 140px;
+    display: flex;
+    padding: 6px 15px;
+    text-decoration: none;
+    background: #5cb85c;
+    color: #FFF;
+    font-weight: 500;
+    border-radius: 12px;
+    box-shadow: 0px 0px 20px -8px cadetblue;
+    font-size: 15px;
+    margin-top: 10px;
+}
 
+.edit--delete:hover {
+    background: #0d7811;
+}
 
 .section {
     padding: 70px;
