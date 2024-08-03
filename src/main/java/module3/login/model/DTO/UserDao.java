@@ -1,5 +1,6 @@
-package module3.login.model;
+package module3.login.model.DTO;
 
+import module3.login.model.UserDTO;
 import module3.login.sevice.DBConnection;
 
 import java.sql.Connection;
@@ -109,8 +110,8 @@ public class UserDao {
     }
 
 
-    public static List<User> select(String selectQuery) {
-        List<User> users = new ArrayList<>();
+    public static List<UserDTO> select(String selectQuery) {
+        List<UserDTO> users = new ArrayList<>();
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(selectQuery);
              ResultSet resultSet = statement.executeQuery()) {
@@ -119,7 +120,7 @@ public class UserDao {
                 int id = resultSet.getInt("user_id");
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
-                users.add(new User(id, email, password));
+                users.add(new UserDTO(id, email, password));
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error executing select query", e);

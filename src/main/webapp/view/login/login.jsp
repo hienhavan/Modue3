@@ -370,16 +370,6 @@
                         <label for="signup-password-confirm">Confirm password</label>
                         <input id="signup-password-confirm" type="password" pattern="^[\w\S]{6,8}$" name="password-confirm" placeholder="nhập lại mật khẩu" required>
                     </div>
-                    <%--                    <c:if test="${errorEmail == false}">--%>
-                    <%--                        <script>--%>
-                    <%--                            alert("đăng ký không thành công (tài khoản đã tồn tại)")--%>
-                    <%--                        </script>--%>
-                    <%--                    </c:if>--%>
-                    <%--                    <c:if test="${errorPassword == false}">--%>
-                    <%--                        <script>--%>
-                    <%--                            alert("đăng ký không thành công (mật khẩu không khớp nhau)")--%>
-                    <%--                        </script>--%>
-                    <%--                    </c:if>--%>
                 </fieldset>
                 <input type="submit" class="btn-signup" value="Continue">
             </form>

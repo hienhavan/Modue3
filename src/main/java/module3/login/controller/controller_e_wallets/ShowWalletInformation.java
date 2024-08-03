@@ -1,6 +1,6 @@
-package module3.login.controller;
+package module3.login.controller.controller_e_wallets;
 
-import module3.login.model.DTO.UserDao;
+import module3.login.model.DTO.WalletDTO;
 import module3.login.model.EWalletsDao;
 
 import javax.servlet.ServletException;
@@ -9,15 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(name = "login",urlPatterns = "/aaa")
-public class aaaa extends HttpServlet {
+@WebServlet(name = "showWalletInformation", urlPatterns = "/showWalletInformation")
+public class ShowWalletInformation extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<WalletDTO> listWallet;
         try {
-            EWalletsDao.showWalletInformation();
+            listWallet = EWalletsDao.showWalletInformation();
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        req.setAttribute("listWallet", listWallet);
+        req.getRequestDispatcher("view/e_wallets/walletInformation.jsp").forward(req, resp);
     }
 }

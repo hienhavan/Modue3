@@ -1,6 +1,6 @@
 package module3.login.controller.controller_add_user_information;
 
-import module3.login.model.UserDao;
+import module3.login.model.DTO.UserDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

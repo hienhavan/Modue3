@@ -1,6 +1,6 @@
 package module3.login.controller.controller_login;
 
-import module3.login.model.UserDao;
+import module3.login.model.DTO.UserDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "login", urlPatterns = "/loginUsers")
+@WebServlet(name = "logins", urlPatterns = "/loginUsers" )
 public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
+        HttpSession session = req.getSession();
+        session.setAttribute("userEmail", email);
         //Check Account Password
         boolean checkAccout;
         try {
@@ -26,13 +28,11 @@ public class Login extends HttpServlet {
         //if true
         boolean checkInformation = UserDao.checkUserInfomation(email);
         if (checkAccout && !checkInformation) {
-            HttpSession session = req.getSession();
-            session.setAttribute("userEmail", email);
             resp.sendRedirect("/userInformation");
             return;
         }
-        if (checkAccout){
-            resp.sendRedirect("/products");
+        if (checkAccout) {
+            resp.sendRedirect("/controllerHomePage");
             return;
         }
         //if false

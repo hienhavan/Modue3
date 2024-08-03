@@ -1,7 +1,4 @@
-package module3.login.controller;
-
-import module3.login.model.DTO.UserDao;
-import module3.login.model.EWalletsDao;
+package module3.login.controller.controller_login;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,14 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "login",urlPatterns = "/aaa")
-public class aaaa extends HttpServlet {
+@WebServlet(name = "logOut", urlPatterns = "/logout")
+public class LogOut extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            EWalletsDao.showWalletInformation();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        resp.sendRedirect("/login");
     }
 }

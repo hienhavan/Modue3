@@ -1,14 +1,14 @@
 package module3.login.model;
 
-public class User {
+public class UserDTO {
     int id;
     String gmail;
     String password;
 
-    public User() {
+    public UserDTO() {
     }
 
-    public User(int id, String gmail, String password) {
+    public UserDTO(int id, String gmail, String password) {
         this.id = id;
         this.gmail = gmail;
         this.password = password;
