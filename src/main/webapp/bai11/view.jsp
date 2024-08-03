@@ -1,4 +1,4 @@
-<%@ page import="module3.bai11.model.User" %>
+<%@ page import="Case_Module3.bai11.model.User" %>
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 

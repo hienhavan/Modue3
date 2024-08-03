@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="module3.login.model.DTO.WalletDTO" %>
+<%@ page import="Case_Module3.login.model.DTO.WalletDTO" %>
 
 <html>
 <head>
@@ -320,7 +320,7 @@
             </div>
             <div>
                 <input type="submit" class="form__btn" value="Nạp tiền">
-                <a href="<%=request.getContextPath()%>/showWalletInformation" class="form__btn listWallets">Chi tiết</a>
+                <a href="<%=request.getContextPath()%>/showWalletInformationWhereId?idwallet=${idWallet}" class="form__btn listWallets">Chi tiết</a>
             </div>
         </div>
     </div>

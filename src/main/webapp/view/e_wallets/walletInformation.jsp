@@ -7,7 +7,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="module3.login.model.DTO.WalletDTO" %>
+<%@ page import="Case_Module3.login.model.DTO.WalletDTO" %>
 <html>
 <head>
     <title>Title</title>
@@ -467,7 +467,7 @@
                               fill="#FFFFFF"></path>
               </svg>
                 </div>
-                <c:forEach var="wallet" items="${listWallet}">
+                <c:forEach var="wallet" items="${wallet}">
                     <c:if test="${wallet.idWallet != null}">
                         <c:set var="idWallet" value="${wallet.idWallet}"/>
                         <c:set var="formattedCode" value="${wallet.codeWallet}"/>
@@ -550,7 +550,7 @@
                 </c:if>
                 <%--    <div id="editSection" class="section">--%>
                 <h2>Chỉnh sửa thông tin</h2>
-                <form class="form" action="<%=request.getContextPath()%>/UpdateWalletInformation" method="post">
+                <form class="form" action="<%=request.getContextPath()%>/UpdateWalletInformation?idWallet=${idWallet}" method="post">
                     <div class="form__name form__detail">
                         <label for="name">Cardholder Name</label>
                         <ion-icon name="person-outline"></ion-icon>
