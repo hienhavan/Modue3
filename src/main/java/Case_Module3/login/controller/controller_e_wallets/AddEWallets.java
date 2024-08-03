@@ -24,6 +24,6 @@ public class AddEWallets extends HttpServlet {
         String email = (String) session.getAttribute("userEmail");
         int idUser = EWalletsDao.checkIdUser(email);
         EWalletsDao.addEWallets(name, number, date, cvv, idUser);
-        resp.sendRedirect("/showWalletInformation");
+        resp.sendRedirect("/showListWallet");
     }
 }

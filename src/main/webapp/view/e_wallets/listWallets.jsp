@@ -215,12 +215,12 @@
                                           href="<%=request.getContextPath()%>/controllerHomePage">Trang chủ</a>
                 </li>
                 <li class="u-nav-item"><a class="u-button-style u-nav-link"
-                                          href="<%=request.getContextPath()%>/controllerAddEWallets">Ví của tôi</a>
+                                          href="#">Ví của tôi</a>
                 </li>
                 <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Contact.html">Trang cá nhân</a>
                 </li>
                 <li class="u-nav-item"><a class="u-button-style u-nav-link"
-                                          href="<%=request.getContextPath()%>/controllerAddEWallets">Danh mục</a>
+                                          href="#">Danh mục</a>
                 </li>
                 <li class="u-nav-item"><a class="u-button-style u-nav-link" href="<%=request.getContextPath()%>/logout">Đăng
                     xuất</a>
@@ -319,7 +319,7 @@
                 </div>
             </div>
             <div>
-                <input type="submit" class="form__btn" value="Nạp tiền">
+                <a href="#" class="form__btn listWallets">Nạp tiền</a>
                 <a href="<%=request.getContextPath()%>/showWalletInformationWhereId?idwallet=${idWallet}" class="form__btn listWallets">Chi tiết</a>
             </div>
         </div>

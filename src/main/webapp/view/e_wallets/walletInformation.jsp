@@ -384,12 +384,12 @@
             <ul class="u-nav">
                 <li class="u-nav-item"><a class="u-button-style u-nav-link" href="#">Trang chủ</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="About.html">Ví của tôi</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="<%=request.getContextPath()%>/controllerHomeListWallet">Ví của tôi</a>
                 </li>
                 <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Contact.html">Trang cá nhân</a>
                 </li>
                 <li class="u-nav-item"><a class="u-button-style u-nav-link"
-                                          href="<%=request.getContextPath()%>/controllerHomeListWallet">Danh mục</a>
+                                          href="#">Danh mục</a>
                 </li>
                 <li class="u-nav-item"><a class="u-button-style u-nav-link" href="<%=request.getContextPath()%>/logout">Đăng
                     xuất</a>

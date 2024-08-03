@@ -141,4 +141,21 @@ public class EWalletsDao {
         }
         return listWalletInformation;
     }
+    public static void insertWalletMoney (long walletMoney,int idWallet){
+        final String INSERT_WALLET_MONEY = System.getenv("INSERT_QUERY_MONEY");
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(INSERT_WALLET_MONEY)) {
+            stmt.setLong(1, walletMoney);
+            stmt.setInt(2, idWallet);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error executing insert query", e);
+        }
+    }
 }

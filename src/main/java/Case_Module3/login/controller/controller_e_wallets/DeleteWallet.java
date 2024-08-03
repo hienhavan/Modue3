@@ -15,6 +15,6 @@ public class DeleteWallet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int idWallet = Integer.parseInt(req.getParameter("idWallet"));
         EWalletsDao.deleteWalletInformation(idWallet);
-        resp.sendRedirect("/showWalletInformation");
+        resp.sendRedirect("/showListWallet");
     }
 }
