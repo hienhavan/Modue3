@@ -1,6 +1,6 @@
-package Case_Module3.login.model.DTO;
+package Case_Module3.login.model;
 
-import Case_Module3.login.model.UserDTO;
+import Case_Module3.login.model.DTO.UserDTO;
 import Case_Module3.login.sevice.DBConnection;
 
 import java.sql.Connection;

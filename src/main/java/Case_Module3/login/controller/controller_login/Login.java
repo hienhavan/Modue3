@@ -1,6 +1,6 @@
 package Case_Module3.login.controller.controller_login;
 
-import Case_Module3.login.model.DTO.UserDao;
+import Case_Module3.login.model.UserDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

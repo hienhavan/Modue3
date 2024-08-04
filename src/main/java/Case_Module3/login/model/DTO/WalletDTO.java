@@ -78,14 +78,14 @@ public class WalletDTO {
         this.money = money;
     }
 
-        public static String formatCardNumber(long number) {
-            String numberStr = String.format("%016d", number);
-            StringBuilder sb = new StringBuilder(numberStr);
-            for (int i = sb.length() - 4; i > 0; i -= 4) {
-                sb.insert(i, "&nbsp;");
-            }
-            return sb.toString();
+    public static String formatCardNumber(long number) {
+        String numberStr = String.format("%016d", number);
+        StringBuilder sb = new StringBuilder(numberStr);
+        for (int i = sb.length() - 4; i > 0; i -= 4) {
+            sb.insert(i, "&nbsp;");
         }
+        return sb.toString();
     }
+}
 
 

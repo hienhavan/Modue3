@@ -27,7 +27,6 @@
             --greyDark-1: #92acc4; /* Xám tối 1 */
             --greyDark-2: #5a768f; /* Xám tối 2 */
         }
-
         *, *::before, *::after {
             margin: 0;
             padding: 0;
@@ -153,6 +152,23 @@
             background: #dc3545;
             color: #ffffff;
             justify-self: stretch;
+            font-family: auto;
+            justify-content:center;
+            cursor: pointer;
+            display: flex;
+            margin: auto;
+            padding: 5px;
+            margin-top: 10px;
+            width: 50%;
+            transition: all 0.3s ease;
+
+        }
+        .form__btns{
+            border-radius: .6rem;
+            border: none;
+            background: #dc3545;
+            color: #ffffff;
+            justify-self: stretch;
             font-family: inherit;
             /*font-size: 1.6rem;*/
             justify-content:center;
@@ -161,16 +177,23 @@
             margin: auto;
             padding: 5px;
             margin-top: 10px;
-            width: 50%;
+            width: 25%;
+            transition: all 0.3s ease;
+            position: absolute;
+            margin-left: 73%;
+            margin-top: 24%;
         }
-
+        .form__btns:hover {
+            background: var(--primary-dark);
+            position: absolute;
+        }
         .form__btn:focus {
             outline: none;
             text-decoration: none;
         }
 
         .form__btn:hover {
-            background: var(--primary-dark);
+            background: #0d7811;
         }
 
         input {
@@ -201,9 +224,16 @@
         .alert svg {
             margin-right: .4rem;
         }
+        .input-field {
+            position: absolute;
+            top: 40px;
+            left: 167px;
+            width: 246px;
+            padding: 10px;
+            z-index: 2;
+        }
 
     </style>
-</head>
 </head>
 <body>
 <div>
@@ -217,7 +247,7 @@
                 <li class="u-nav-item"><a class="u-button-style u-nav-link"
                                           href="#">Ví của tôi</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Contact.html">Trang cá nhân</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="<%=request.getContextPath()%>/transactionManagement">Trang cá nhân</a>
                 </li>
                 <li class="u-nav-item"><a class="u-button-style u-nav-link"
                                           href="#">Danh mục</a>
@@ -234,7 +264,7 @@
 </nav>
 </div></header>
 <section id="carousel_c3ca">
-    <h1 style="display: flex;justify-content: center" class="text-success">Danh sách các ví hiện có</h1>
+    <h1 class="text-success">Danh sách các ví hiện có</h1>
             <c:forEach var="wallet" items="${listWallets}">
                 <c:set var="idWallet" value="${wallet.idWallet}"/>
                 <c:set var="formattedCode" value="${wallet.codeWallet}"/>
@@ -304,7 +334,10 @@
                               fill="#FFFFFF"></path>
                   </svg>
                 </div>
-
+<%--                <div>--%>
+<%--                <input type="text" class="input-field" placeholder="Enter text here">--%>
+<%--                <a href="#" class="form__btns listWallets ">Nạp tiền</a>--%>
+<%--                </div>--%>
                 <div class="card__number">${codeWallet}</div>
                 <div class="card__name">
                     <h3>Card Holder</h3>
@@ -327,7 +360,11 @@
     <script src="/view/e_wallets/e-wallets.js"></script>
         </c:forEach>
 </table>
-<a class="listWallets" href="<%=request.getContextPath()%>/controllerAddEWallets">them tai khoan</a>
+    <div class="addWallet">
+        <STRONG class="mt--addWallet" >Bạn chưa có tài khoản?</STRONG><br>
+        <p class="mt--addWallet2">hãy mở ví tiền của mình để bắt đầu quản lý tài sản của mình.</p>
+        <a class="listWallets" href="<%=request.getContextPath()%>/controllerAddEWallets">them tai khoan</a>
+    </div>
 </section>
 <footer class="u-align-center u-clearfix " id="sec-aa0c">
     <div class="u-clearfix">

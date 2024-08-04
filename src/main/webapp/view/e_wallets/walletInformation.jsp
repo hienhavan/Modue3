@@ -140,7 +140,7 @@
                 display: flex;
                 padding: 6px 15px;
                 text-decoration: none;
-                background: #5cb85c;
+                background: #dc3545;
                 color: #FFF;
                 font-weight: 500;
                 border-radius: 12px;
@@ -382,11 +382,11 @@
         <div>
             <div class="u-menu-close"></div>
             <ul class="u-nav">
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="#">Trang chủ</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="<%=request.getContextPath()%>/controllerHomePage">Trang chủ</a>
                 </li>
                 <li class="u-nav-item"><a class="u-button-style u-nav-link" href="<%=request.getContextPath()%>/controllerHomeListWallet">Ví của tôi</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Contact.html">Trang cá nhân</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="<%=request.getContextPath()%>/transactionManagement">Trang cá nhân</a>
                 </li>
                 <li class="u-nav-item"><a class="u-button-style u-nav-link"
                                           href="#">Danh mục</a>

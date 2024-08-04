@@ -1,4 +1,4 @@
-package Case_Module3.login.model;
+package Case_Module3.login.model.DTO;
 
 public class UserDTO {
     int id;

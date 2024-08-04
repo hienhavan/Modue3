@@ -17,15 +17,19 @@
         <div>
             <div class="u-menu-close"></div>
             <ul class="u-nav">
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="#">Trang chủ</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                                          href="<%=request.getContextPath()%>/controllerHomePage">Trang chủ</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="<%=request.getContextPath()%>/controllerHomeListWallet">Ví của tôi</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                                          href="<%=request.getContextPath()%>/controllerHomeListWallet">Ví của tôi</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Contact.html">Trang cá nhân</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                                          href="<%=request.getContextPath()%>/transactionManagement">Trang cá nhân</a>
                 </li>
                 <li class="u-nav-item"><a class="u-button-style u-nav-link" href="#">Danh mục</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="<%=request.getContextPath()%>/logout">Đăng xuất</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="<%=request.getContextPath()%>/logout">Đăng
+                    xuất</a>
                 </li>
             </ul>
         </div>
@@ -35,7 +39,7 @@
 <hr>
 </nav>
 </div></header>
-<section  id="carousel_c3ca">
+<section id="carousel_c3ca">
 
 </section>
 <footer class="u-align-center u-clearfix " id="sec-aa0c">
