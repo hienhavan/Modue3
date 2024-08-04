@@ -1,9 +1,7 @@
-package Case_Module3.login.controller.controller_transaction_management;
+package Case_Module3.login.test;
 
-import Case_Module3.login.model.DTO.TransactionDTO;
 import Case_Module3.login.model.DTO.WalletDTO;
 import Case_Module3.login.model.EWalletsDao;
-import Case_Module3.login.model.TransactionDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,21 +13,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "showAllTransaction", urlPatterns = "/showAllTransaction")
-public class ShowAllTransaction extends HttpServlet {
+@WebServlet(name = "showAllWallet",urlPatterns = "/showAllWallet")
+public class ShowAllWallet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<TransactionDTO> listTransactions = new ArrayList<TransactionDTO>();
         List<WalletDTO> wallet = new ArrayList<WalletDTO>();
         try {
-            listTransactions = TransactionDao.showAllTransaction();
             wallet = EWalletsDao.showWalletInformation();
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
         HttpSession session = req.getSession();
         session.setAttribute("wallet", wallet);
-        req.setAttribute("listTransactions", listTransactions);
-        req.getRequestDispatcher("/view/transaction_management/transactionManagement.jsp").forward(req, resp);
+        req.getRequestDispatcher("/view/test.jsp").forward(req, resp);
     }
 }

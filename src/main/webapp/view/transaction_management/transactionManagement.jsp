@@ -55,6 +55,14 @@
     <div>
         <h1 style="display: flex;justify-content: center;font-size: 3rem;font-family: auto;" class="text-black">Thông
             tin giao dịch</h1>
+        <form>
+            <select  id="productSelect" >
+                <option value="all">Tất cả</option>
+                <c:forEach  var="wallets" items="${sessionScope.wallet}">
+                    <option value="${wallets.idWallet}">STK:${wallets.codeWallet}</option>
+                </c:forEach>
+            </select>
+        </form>
         <table class="table table-bordered table-striped mt-10">
             <tr>
                 <th class="text-success text-center initialism">Danh mục</th>
@@ -108,8 +116,8 @@
                         ></textarea></td>
                     <td class="text-center " style="display: flex;flex-direction: row;width: 100%;">
                         <a href="#" class="form__btn listWallets " id="editTransaction">Chỉnh sửa</a>
-                        <input type="submit" class="form__btn listWallets editTransaction" id="oki"  value="Xong">
-                        <a class="form__btn listWallets editTransaction" id="done" href="#">Hủy</a>
+                        <input type="submit" class="form__btn listWallets editTransaction " id="oki"  value="Xong">
+                        <a class="form__btn listWallets editTransaction " id="done" href="<%=request.getContextPath()%>/transactionManagement">Hủy</a>
                         <a class="form__btn listWallets " onclick="dodelete(${transaction.idTransaction})">Xóa</a>
                     </td>
                 </tr>
@@ -174,7 +182,7 @@
         </form>
     </div>
     <div class="addWallet">
-        <STRONG class="mt--addWallet">Bạn muốn thêm khoản giao?</STRONG><br>
+        <STRONG class="mt--addWallet">Bạn muốn thêm khoản giao dịch?</STRONG><br>
         <p class="mt--addWallet2">Thêm khoản giao dịch của mình để quản lý để quản lý theo dõi dòng tiền của mình.</p>
         <a id="addTransaction" class="listWallets">Thêm giao
             dịch</a>
@@ -186,7 +194,7 @@
             <a class="u-active-none u-border-none u-btn u-button-link u-button-style-a " data-href="#"> Trang quản lý
                 tài chính cá nhân&nbsp;<br>© 2024 Tài liệu được cung cấp bởi [Hà Văn Hiện]<br>&nbsp;Liên hệ:
                 [support@yourfinancialsite.com]<br>&nbsp;Địa chỉ: [codegym,26 Hàm nghi,Mỹ đình, Hà Nội]&nbsp;<br>Website:
-                [Đường dẫn đến trang web của bạn]
+                [Đường dẫn đến aaaaaaaaaaaaa]
                 ---
             </a>
         </p>
@@ -231,6 +239,15 @@
             window.location = "<%=request.getContextPath()%>/deleteTransaction?idTransaction=" + id;
         }
     };
+    document.getElementById('productSelect').addEventListener('change', function() {
+        const idWallet = this.value;
+        if (idWallet !== 'all') {
+            window.location.href = "showAllTransaction?idWallets=" + idWallet;
+        }
+        if (idWallet === 'all') {
+            window.location.href = "transactionManagement";
+        }
+    });
 </script>
 </body>
 </html>

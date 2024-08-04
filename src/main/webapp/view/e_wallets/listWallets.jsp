@@ -17,15 +17,15 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         :root {
-            --primary-light: #8e8aff; /* Màu chính sáng */
-            --primary: #655dff; /* Màu chính */
-            --primary-dark: #4f46f8; /* Màu chính tối */
-            --secondary: #17c9ff; /* Màu phụ */
-            --alert: #ff6a96; /* Màu cảnh báo */
-            --greyLight-1: #e0ecf7; /* Xám sáng 1 */
-            --greyLight-2: #c8dbf0; /* Xám sáng 2 */
-            --greyDark-1: #92acc4; /* Xám tối 1 */
-            --greyDark-2: #5a768f; /* Xám tối 2 */
+            --primary-light: #8e8aff;
+            --primary: #655dff;
+            --primary-dark: #4f46f8;
+            --secondary: #17c9ff;
+            --alert: #ff6a96;
+            --greyLight-1: #e0ecf7;
+            --greyLight-2: #c8dbf0;
+            --greyDark-1: #92acc4;
+            --greyDark-2: #5a768f;
         }
         *, *::before, *::after {
             margin: 0;
@@ -176,12 +176,10 @@
             display: flex;
             margin: auto;
             padding: 5px;
-            margin-top: 10px;
-            width: 25%;
             transition: all 0.3s ease;
             position: absolute;
-            margin-left: 73%;
-            margin-top: 24%;
+            margin-left: 65%;
+            margin-top: -25%;
         }
         .form__btns:hover {
             background: var(--primary-dark);
@@ -227,10 +225,14 @@
         .input-field {
             position: absolute;
             top: 40px;
-            left: 167px;
-            width: 246px;
             padding: 10px;
             z-index: 2;
+            font-size: 2rem;
+            width: 100%;
+            left: 12rem;
+        }
+        .addMoney{
+            display: none;
         }
 
     </style>
@@ -334,10 +336,10 @@
                               fill="#FFFFFF"></path>
                   </svg>
                 </div>
-<%--                <div>--%>
-<%--                <input type="text" class="input-field" placeholder="Enter text here">--%>
-<%--                <a href="#" class="form__btns listWallets ">Nạp tiền</a>--%>
-<%--                </div>--%>
+                <div class="addMoney">
+                <input type="text" class="input-field" placeholder="Enter text here">
+                <a href="#" class="form__btns listWallets ">Xác Nhận</a>
+                </div>
                 <div class="card__number">${codeWallet}</div>
                 <div class="card__name">
                     <h3>Card Holder</h3>
