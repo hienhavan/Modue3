@@ -354,7 +354,7 @@
                 </div>
             </div>
             <div>
-                <a href="#" class="form__btn listWallets">Nạp tiền</a>
+                <a href="<%=request.getContextPath()%>/insertWalletMoney?idWallet=${idWallet}" class="form__btn listWallets">Nạp tiền</a>
                 <a href="<%=request.getContextPath()%>/showWalletInformationWhereId?idwallet=${idWallet}" class="form__btn listWallets">Chi tiết</a>
             </div>
         </div>
