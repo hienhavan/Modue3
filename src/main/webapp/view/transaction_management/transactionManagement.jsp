@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="java.time.format.DateTimeFormatter" %><%--
   Created by IntelliJ IDEA.
   User: Admin
   Date: 8/3/2024
@@ -56,13 +57,31 @@
         <h1 style="display: flex;justify-content: center;font-size: 3rem;font-family: auto;" class="text-black">Thông
             tin giao dịch</h1>
         <form>
-            <select  id="productSelect" >
+            <select id="productSelect">
                 <option value="all">Tất cả</option>
-                <c:forEach  var="wallets" items="${sessionScope.wallet}">
+                <c:forEach var="wallets" items="${sessionScope.wallet}">
                     <option value="${wallets.idWallet}">STK:${wallets.codeWallet}</option>
                 </c:forEach>
             </select>
         </form>
+        <% LocalDateTime now = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String formattedDateTime = now.format(formatter);%>
+        <select id="productSelects">
+            <option value="all">Toàn thời gian</option>
+            <option value="<%=formattedDateTime%>">Ngày hôm nay</option>
+            <option value="date-range">Date Range</option>
+        </select>
+        <div id="date-range-filter" style="display: none;">
+            <form action="<%=request.getContextPath()%>/showAllTransactionWhereDuration" method="post">
+                <label for="start-date">Start Date:</label>
+                <input name="dayStart" type="date" id="start-date">
+                <label for="end-date">End Date:</label>
+                <input name="dayEnd" type="date" id="end-date">
+                <input class="bg-teal-500 text-white rounded-md px-4 py-1 hover:bg-teal-600 hover:text-white"
+                       type="submit" value="Apply">
+            </form>
+        </div>
         <table class="table table-bordered table-striped mt-10">
             <tr>
                 <th class="text-success text-center initialism">Danh mục</th>
@@ -74,55 +93,71 @@
                 <th class="text-success text-center initialism">Ghi Chú</th>
             </tr>
             <c:forEach var="transaction" items="${listTransactions}">
-                <form action="<%=request.getContextPath()%>/updateTransaction?idTransaction=${transaction.idTransaction}" method="post">
+                <form action="<%=request.getContextPath()%>/updateTransaction?idTransaction=${transaction.idTransaction}"
+                      method="post">
+                    <tr>
+                        <td class="text-center "><c:out value="${transaction.category}"/>
+                            <input class="editTransaction text-center " placeholder="Tên danh mục" type="text"
+                                   name="idDirectory">
+                        </td>
+                        <td class="text-center"><c:out value="${transaction.money} VND"/>
+                            <input class="editTransaction text-center" placeholder="Số tiền" type=number name="money">
+                        </td>
+                        <td class="text-center "><c:out value="${transaction.type}"/>
+                            <select class="editTransaction text-center "
+                                    name="type">
+                                <option disabled selected value="0">loại giao dịch</option>
+                                <option value="thu">thu</option>
+                                <option value="chi">chi</option>
+                            </select></td>
+                        <td class="text-center "><c:out value="${transaction.dayTrading}"/>
+                            <input
+                                    class="editTransaction text-center " name="dayTrading"
+                                    id="dayTrading"
+                                    type="date"
+                            /></td>
+                        <td class="text-center "><c:out value="${transaction.dateCreated}"/>
+                            <input
+                                    class="editTransaction text-center " name="dateCreated"
+                                    id="day"
+                                    type="date"
+                            /></td>
+                        <td class="text-center "><c:out value="${transaction.latestDate}"/>
+                            <input
+                                    class="editTransaction text-center " name="latestDate"
+                                    id="dayUpDate"
+                                    type="date"
+                            /></td>
+                        <td class="text-center "><c:out value="${transaction.note}"/>
+                            <textarea
+                                    placeholder="Mô tả giao dịch" name="note"
+                                    class="editTransaction text-center"
+                                    id="story-output"
+                            ></textarea></td>
+                        <td class="text-center " style="display: flex;flex-direction: row;width: 100%;">
+                            <a href="#" class="form__btn listWallets " id="editTransaction">Chỉnh sửa</a>
+                            <input type="submit" class="form__btn listWallets editTransaction " id="oki" value="Xong">
+                            <a class="form__btn listWallets editTransaction " id="done"
+                               href="<%=request.getContextPath()%>/transactionManagement">Hủy</a>
+                            <a class="form__btn listWallets " onclick="dodelete(${transaction.idTransaction})">Xóa</a>
+                        </td>
+                    </tr>
+                </form>
+            </c:forEach>
+            <c:if test="${limbAndAutumn != null}">
                 <tr>
-                    <td class="text-center "><c:out value="${transaction.category}"/>
-                        <input class="editTransaction text-center " placeholder="Tên danh mục" type="text"
-                               name="idDirectory">
-                    </td>
-                    <td class="text-center"><c:out value="${transaction.money}"/>
-                        <input class="editTransaction text-center" placeholder="Số tiền" type=number name="money">
-                    </td>
-                    <td class="text-center "><c:out value="${transaction.type}"/>
-                        <select class="editTransaction text-center "
-                                name="type">
-                            <option disabled selected value="0">loại giao dịch</option>
-                            <option value="thu">thu</option>
-                            <option value="chi">chi</option>
-                        </select></td>
-                    <td class="text-center "><c:out value="${transaction.dayTrading}"/>
-                        <input
-                                class="editTransaction text-center " name="dayTrading"
-                                id="dayTrading"
-                                type="date"
-                        /></td>
-                    <td class="text-center "><c:out value="${transaction.dateCreated}"/>
-                        <input
-                                class="editTransaction text-center " name="dateCreated"
-                                id="day"
-                                type="date"
-                        /></td>
-                    <td class="text-center "><c:out value="${transaction.latestDate}"/>
-                        <input
-                                class="editTransaction text-center " name="latestDate"
-                                id="dayUpDate"
-                                type="date"
-                        /></td>
-                    <td class="text-center "><c:out value="${transaction.note}"/>
-                        <textarea
-                                placeholder="Mô tả giao dịch" name="note"
-                                class="editTransaction text-center"
-                                id="story-output"
-                        ></textarea></td>
-                    <td class="text-center " style="display: flex;flex-direction: row;width: 100%;">
-                        <a href="#" class="form__btn listWallets " id="editTransaction">Chỉnh sửa</a>
-                        <input type="submit" class="form__btn listWallets editTransaction " id="oki"  value="Xong">
-                        <a class="form__btn listWallets editTransaction " id="done" href="<%=request.getContextPath()%>/transactionManagement">Hủy</a>
-                        <a class="form__btn listWallets " onclick="dodelete(${transaction.idTransaction})">Xóa</a>
+                    <td>Tổng chi</td>
+                    <td class="text-danger text-center">
+                        <pre>- ${limbAndAutumn[0]} VND</pre>
                     </td>
                 </tr>
-            </form>
-            </c:forEach>
+                <tr>
+                    <td>Tổng thu</td>
+                    <td class="text-success text-center">
+                        <pre>+ ${limbAndAutumn[1]} VND</pre>
+                    </td>
+                </tr>
+            </c:if>
         </table>
     </div>
     <div id="addTransactionForm" style="width: 50%;margin-left: 25%;margin-top: 5%;display: none">
@@ -209,23 +244,21 @@
         });
     });
     document.addEventListener('DOMContentLoaded', () => {
-        // Lấy tất cả các nút chỉnh sửa
+
         const editButtons = document.querySelectorAll('.form__btn.listWallets#editTransaction');
         editButtons.forEach(button => {
             button.addEventListener('click', (event) => {
                 event.preventDefault();
                 const row = button.closest('tr');
 
-                // Ẩn tất cả các thuộc tính
                 const allEditFields = document.querySelectorAll('.editTransaction');
                 allEditFields.forEach(field => {
-                    // Nếu thuộc tính không nằm trong hàng hiện tại
+
                     if (!row.contains(field)) {
                         field.style.display = 'none';
                     }
                 });
 
-                // Hiển thị các thuộc tính trong hàng hiện tại
                 const fieldsInRow = row.querySelectorAll('.editTransaction');
                 fieldsInRow.forEach(field => field.style.display = 'block');
             });
@@ -239,13 +272,26 @@
             window.location = "<%=request.getContextPath()%>/deleteTransaction?idTransaction=" + id;
         }
     };
-    document.getElementById('productSelect').addEventListener('change', function() {
+    document.getElementById('productSelect').addEventListener('change', function () {
         const idWallet = this.value;
         if (idWallet !== 'all') {
-            window.location.href = "showAllTransaction?idWallets=" + idWallet;
+            window.location.href = "showAllTransactionWhereId?idWallet=" + idWallet;
         }
         if (idWallet === 'all') {
             window.location.href = "transactionManagement";
+        }
+    });
+    document.getElementById('productSelects').addEventListener('change', function () {
+        const day = this.value;
+        if (day === 'all') {
+            window.location.href = "<%=request.getContextPath()%>/transactionManagement";
+        } else if (day === '<%=formattedDateTime%>') {
+            window.location.href = "showTransactionWhereDayNow?dayNow=" + day;
+        }
+        if (day === 'date-range') {
+            document.getElementById('date-range-filter').style.display = 'block';
+        } else {
+            document.getElementById('date-range-filter').style.display = 'none';
         }
     });
 </script>
