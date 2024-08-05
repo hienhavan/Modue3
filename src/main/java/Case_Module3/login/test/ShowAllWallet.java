@@ -17,14 +17,8 @@ import java.util.List;
 public class ShowAllWallet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<WalletDTO> wallet = new ArrayList<WalletDTO>();
-        try {
-            wallet = EWalletsDao.showWalletInformation();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        HttpSession session = req.getSession();
-        session.setAttribute("wallet", wallet);
-        req.getRequestDispatcher("/view/test.jsp").forward(req, resp);
+       long money = 0;
+        money = EWalletsDao.checkMoney(16);
+        System.out.println("aaaaaaaaaaaaaaa"+money);
     }
 }

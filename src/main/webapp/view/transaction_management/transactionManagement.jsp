@@ -146,15 +146,15 @@
             </c:forEach>
             <c:if test="${limbAndAutumn != null}">
                 <tr>
-                    <td>Tổng chi</td>
+                    <td class="bg-info text-center">Tổng chi</td>
                     <td class="text-danger text-center">
-                        <pre>- ${limbAndAutumn[0]} VND</pre>
+                        <pre> ${limbAndAutumn[0]} VND</pre>
                     </td>
                 </tr>
                 <tr>
-                    <td>Tổng thu</td>
+                    <td class="bg-info text-center">Tổng thu</td>
                     <td class="text-success text-center">
-                        <pre>+ ${limbAndAutumn[1]} VND</pre>
+                        <pre>+${limbAndAutumn[1]} VND</pre>
                     </td>
                 </tr>
             </c:if>

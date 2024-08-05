@@ -23,6 +23,7 @@ public class AddImformationTransactionMnagement extends HttpServlet {
         long money = Long.parseLong(req.getParameter("money"));
         long codeWallet = Long.parseLong(req.getParameter("codeWallet"));
         int idWallet = 0;
+        long moneys = 0;
         try {
             idWallet = EWalletsDao.checkIdWallet(codeWallet);
         } catch (ClassNotFoundException e) {
@@ -34,8 +35,16 @@ public class AddImformationTransactionMnagement extends HttpServlet {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formattedDateTime = now.format(formatter);
+        long checkMoney = EWalletsDao.checkMoney(idWallet);
+        if (checkMoney == 0) {
+            EWalletsDao.setMoney(moneys, idWallet);
+        }
+        if (type.equals("chi")) {
+            money = -money;
+        }
+        EWalletsDao.updateWalletMoney(money, idWallet);
         try {
-            TransactionDao.addTransaction(idUser,idWallet,money,note,type,dayTrading,formattedDateTime);
+            TransactionDao.addTransaction(idUser, idWallet, money, note, type, dayTrading, formattedDateTime);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

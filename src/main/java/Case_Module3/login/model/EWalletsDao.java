@@ -156,7 +156,7 @@ public class EWalletsDao {
         } catch (SQLException e) {
             throw new RuntimeException("Error executing insert query", e);
         }
-        System.out.println("id"+idWallet);
+        System.out.println("id" + idWallet);
         return idWallet;
     }
 
@@ -175,6 +175,64 @@ public class EWalletsDao {
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Error executing insert query", e);
+        }
+    }
+
+    public static void updateWalletMoney(long walletMoney, int idWallet) {
+        final String UPDATE_MONEY_WALLET = System.getenv("UPDATE_MONEY_WALLET");
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(UPDATE_MONEY_WALLET)) {
+            stmt.setLong(1, walletMoney);
+            stmt.setInt(2, idWallet);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error executing update query", e);
+        }
+    }
+
+    public static Long checkMoney(int idWallet) {
+        final String CHECK_MONEY_WALLET = System.getenv("CHECK_MONEY_WALLET");
+        long money = 0;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(CHECK_MONEY_WALLET)) {
+            stmt.setInt(1, idWallet);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                money = rs.getLong("tien");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error executing select query", e);
+        }
+        return money;
+    }
+
+    public static void setMoney(long money, int idWallet) {
+        final String SET_MONEY_WALLET = System.getenv("SET_MONEY_WALLET");
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(SET_MONEY_WALLET)) {
+            stmt.setLong(1, money);
+            stmt.setInt(2, idWallet);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error executing update query", e);
         }
     }
 }
