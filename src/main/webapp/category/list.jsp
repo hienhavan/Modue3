@@ -1,15 +1,16 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Admin
-  Date: 8/3/2024
-  Time: 10:12 AM
+  User: minhquan
+  Date: 05/08/2024
+  Time: 14:27
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>home</title>
-    <link rel="stylesheet" type="text/css" href="/view/home/home.css">
+    <title>Category Management</title>
+    <link rel="stylesheet" href="category/style.css">
 </head>
 <body>
 <div>
@@ -26,7 +27,8 @@
                 <li class="u-nav-item"><a class="u-button-style u-nav-link"
                                           href="<%=request.getContextPath()%>/transactionManagement">Trang cá nhân</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link"  href="<%=request.getContextPath()%>/category">Danh mục</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                                          href="<%=request.getContextPath()%>category">Danh mục</a>
                 </li>
                 <li class="u-nav-item"><a class="u-button-style u-nav-link" href="<%=request.getContextPath()%>/logout">Đăng
                     xuất</a>
@@ -36,12 +38,37 @@
     </div>
     <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
 </div>
-<hr>
-</nav>
-</div></header>
-<section id="carousel_c3ca">
-
-</section>
+<div class="container">
+    <div class="header">
+        <h1>Category Management</h1>
+        <button class="add-button"
+                onclick="window.location.href='${pageContext.request.contextPath}/category?action=add'">
+            + Add Category
+        </button>
+    </div>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Note</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="category" items="${listCategory}">
+            <tr>
+                <td><c:out value="${category.name}"/></td>
+                <td><c:out value="${category.notes}"/></td>
+                <td>
+                    <a href="/category?action=edit&categoryId=${category.categoryId}">Edit</a> |
+                    <a href="/category?action=delete&categoryId=${category.categoryId}"
+                       onclick="return confirm('Are you sure you want to delete this category?');">Delete</a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
 <footer class="u-align-center u-clearfix " id="sec-aa0c">
     <div class="u-clearfix">
         <p class="u-align-center u-small-text u-text">

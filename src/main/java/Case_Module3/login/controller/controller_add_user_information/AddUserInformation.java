@@ -21,6 +21,6 @@ public class AddUserInformation extends HttpServlet {
         HttpSession session = req.getSession();
         String email = (String) session.getAttribute("userEmail");
         UserDao.addUserInfomation(name,age,phoneNumber,address,email);
-resp.sendRedirect("/products");
+resp.sendRedirect("/controllerHomePage");
     }
 }

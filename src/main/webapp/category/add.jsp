@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Admin
-  Date: 8/3/2024
-  Time: 10:12 AM
+  User: minhquan
+  Date: 05/08/2024
+  Time: 14:26
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>home</title>
-    <link rel="stylesheet" type="text/css" href="/view/home/home.css">
+    <title>Category Management</title>
+    <link rel="stylesheet" href="category/add.css">
 </head>
 <body>
 <div>
@@ -26,7 +26,8 @@
                 <li class="u-nav-item"><a class="u-button-style u-nav-link"
                                           href="<%=request.getContextPath()%>/transactionManagement">Trang cá nhân</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link"  href="<%=request.getContextPath()%>/category">Danh mục</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                                          href="<%=request.getContextPath()%>category">Danh mục</a>
                 </li>
                 <li class="u-nav-item"><a class="u-button-style u-nav-link" href="<%=request.getContextPath()%>/logout">Đăng
                     xuất</a>
@@ -36,12 +37,31 @@
     </div>
     <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
 </div>
-<hr>
-</nav>
-</div></header>
-<section id="carousel_c3ca">
-
-</section>
+<center>
+    <h1>Category Management</h1>
+</center>
+<div align="center">
+    <form method="post">
+        <table border="1" cellpadding="5">
+            <caption>
+                <h2>Create New Category</h2>
+            </caption>
+            <tr>
+                <th>Name:</th>
+                <td><input type="text" name="name" required/></td>
+            </tr>
+            <tr>
+                <th>Note:</th>
+                <td><input type="text" name="note" rows="5" cols="50" required/></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="Save"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
 <footer class="u-align-center u-clearfix " id="sec-aa0c">
     <div class="u-clearfix">
         <p class="u-align-center u-small-text u-text">
