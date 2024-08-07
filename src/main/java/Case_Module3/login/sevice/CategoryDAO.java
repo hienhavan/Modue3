@@ -136,4 +136,11 @@ public class CategoryDAO implements ICategory {
             }
         }
     }
+
+    public static void main(String[] args) {
+        String money = "asds";
+                if(money.equals("thu")){
+
+                }
+    }
 }

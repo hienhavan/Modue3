@@ -39,7 +39,8 @@
                 <li class="u-nav-item"><a class="u-button-style u-nav-link"
                                           href="<%=request.getContextPath()%>/transactionManagement">Trang cá nhân</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link"  href="<%=request.getContextPath()%>/category">Danh mục</a>
+                <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                                          href="<%=request.getContextPath()%>/category">Danh mục</a>
                 </li>
                 <li class="u-nav-item"><a class="u-button-style u-nav-link" href="<%=request.getContextPath()%>/logout">Đăng
                     xuất</a>
@@ -95,46 +96,48 @@
             <c:forEach var="transaction" items="${listTransactions}">
                 <form action="<%=request.getContextPath()%>/updateTransaction?idTransaction=${transaction.idTransaction}"
                       method="post">
+                    <c:if test="${(transaction.type).equals('thu')}">
+
                     <tr>
-                        <td class="text-center "><c:out value="${transaction.category}"/>
-                            <input class="editTransaction text-center " placeholder="Tên danh mục" type="text"
+                        <td class="text-center bg-success"><c:out value="${transaction.category}"/>
+                            <input class="editTransaction bg-success text-center " placeholder="Tên danh mục" type="text"
                                    name="idDirectory">
                         </td>
-                        <td class="text-center"><c:out value="${transaction.money} VND"/>
-                            <input class="editTransaction text-center" placeholder="Số tiền" type=number name="money">
+                        <td class="bg-success" style="text-align: end"><c:out value="${transaction.money} VND"/>
+                            <input class="editTransaction bg-success text-center" placeholder="Số tiền" type=number name="money">
                         </td>
-                        <td class="text-center "><c:out value="${transaction.type}"/>
-                            <select class="editTransaction text-center "
+                        <td class="text-center bg-success"><c:out value="${transaction.type}"/>
+                            <select class="editTransaction bg-success text-center "
                                     name="type">
                                 <option disabled selected value="0">loại giao dịch</option>
                                 <option value="thu">thu</option>
                                 <option value="chi">chi</option>
                             </select></td>
-                        <td class="text-center "><c:out value="${transaction.dayTrading}"/>
+                        <td class="text-center bg-success"><c:out value="${transaction.dayTrading}"/>
                             <input
-                                    class="editTransaction text-center " name="dayTrading"
+                                    class="editTransaction bg-success text-center " name="dayTrading"
                                     id="dayTrading"
                                     type="date"
                             /></td>
-                        <td class="text-center "><c:out value="${transaction.dateCreated}"/>
+                        <td class="text-center bg-success"><c:out value="${transaction.dateCreated}"/>
                             <input
-                                    class="editTransaction text-center " name="dateCreated"
+                                    class="editTransaction bg-success text-center " name="dateCreated"
                                     id="day"
                                     type="date"
                             /></td>
-                        <td class="text-center "><c:out value="${transaction.latestDate}"/>
+                        <td class="text-center bg-success"><c:out value="${transaction.latestDate}"/>
                             <input
-                                    class="editTransaction text-center " name="latestDate"
+                                    class="editTransaction bg-success text-center " name="latestDate"
                                     id="dayUpDate"
                                     type="date"
                             /></td>
-                        <td class="text-center "><c:out value="${transaction.note}"/>
+                        <td class="text-center bg-success"><c:out value="${transaction.note}"/>
                             <textarea
                                     placeholder="Mô tả giao dịch" name="note"
-                                    class="editTransaction text-center"
+                                    class="editTransaction bg-success  text-center"
                                     id="story-output"
                             ></textarea></td>
-                        <td class="text-center " style="display: flex;flex-direction: row;width: 100%;">
+                        <td class="text-center bg-secondary" style="display: flex;flex-direction: row;width: 100%;">
                             <a href="#" class="form__btn listWallets " id="editTransaction">Chỉnh sửa</a>
                             <input type="submit" class="form__btn listWallets editTransaction " id="oki" value="Xong">
                             <a class="form__btn listWallets editTransaction " id="done"
@@ -142,18 +145,69 @@
                             <a class="form__btn listWallets " onclick="dodelete(${transaction.idTransaction})">Xóa</a>
                         </td>
                     </tr>
+                    </c:if>
+                    <c:if test="${(transaction.type).equals('chi')}">
+
+                        <tr>
+                            <td class="text-center bg-danger"><c:out value="${transaction.category}"/>
+                                <input class="editTransaction  bg-danger text-center " placeholder="Tên danh mục" type="text"
+                                       name="idDirectory">
+                            </td>
+                            <td class="bg-danger" style="text-align: end"><c:out value="${transaction.money} VND"/>
+                                <input class="editTransaction  bg-danger text-center" placeholder="Số tiền" type=number name="money">
+                            </td>
+                            <td class="text-center bg-danger"><c:out value="${transaction.type}"/>
+                                <select class="editTransaction  bg-danger text-center "
+                                        name="type">
+                                    <option disabled selected value="0">loại giao dịch</option>
+                                    <option value="thu">thu</option>
+                                    <option value="chi">chi</option>
+                                </select></td>
+                            <td class="text-center bg-danger"><c:out value="${transaction.dayTrading}"/>
+                                <input
+                                        class="editTransaction  bg-danger text-center " name="dayTrading"
+                                        id="dayTrading"
+                                        type="date"
+                                /></td>
+                            <td class="text-center bg-danger"><c:out value="${transaction.dateCreated}"/>
+                                <input
+                                        class="editTransaction  bg-danger text-center " name="dateCreated"
+                                        id="day"
+                                        type="date"
+                                /></td>
+                            <td class="text-center bg-danger"><c:out value="${transaction.latestDate}"/>
+                                <input
+                                        class="editTransaction  bg-danger text-center " name="latestDate"
+                                        id="dayUpDate"
+                                        type="date"
+                                /></td>
+                            <td class="text-center bg-danger"><c:out value="${transaction.note}"/>
+                                <textarea
+                                        placeholder="Mô tả giao dịch" name="note"
+                                        class="editTransaction  bg-danger text-center"
+                                        id="story-output"
+                                ></textarea></td>
+                            <td class="text-center bg-secondary " style="display: flex;flex-direction: row;width: 100%;">
+                                <a href="#" class="form__btn  listWallets " id="editTransaction">Chỉnh sửa</a>
+                                <input type="submit" class="form__btn listWallets editTransaction " id="oki2" value="Xong">
+                                <a class="form__btn listWallets editTransaction " id="done2"
+                                   href="<%=request.getContextPath()%>/transactionManagement">Hủy</a>
+                                <a class="form__btn listWallets " onclick="dodelete(${transaction.idTransaction})">Xóa</a>
+                            </td>
+                        </tr>
+                    </c:if>
                 </form>
             </c:forEach>
             <c:if test="${limbAndAutumn != null}">
                 <tr>
                     <td class="bg-info text-center">Tổng chi</td>
-                    <td class="text-danger text-center">
+                    <td class="text-danger" style="text-align: end">
                         <pre> ${limbAndAutumn[0]} VND</pre>
                     </td>
                 </tr>
                 <tr>
                     <td class="bg-info text-center">Tổng thu</td>
-                    <td class="text-success text-center">
+                    <td class="text-success" style="text-align: end">
                         <pre>+${limbAndAutumn[1]} VND</pre>
                     </td>
                 </tr>
